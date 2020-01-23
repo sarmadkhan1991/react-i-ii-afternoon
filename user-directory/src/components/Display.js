@@ -13,15 +13,29 @@ export default class Display extends Component {
     }
 
     incrementIndex () {
-        this.setState ( { index: this.state.index + 1 } )
+        const {index} = this.state;
+        console.log(index);
+        if (index > 23){
+            this.setState({ index: 0})
+        }else {
+            this.setState ( { index: index + 1 } )
+        }
     }
 
     decrementIndex () {
-        this.setState ( { index: this.state.index - 1 } )
+        const {index} = this.state;
+        console.log(index);
+        if (index <= 0) {
+            this.setState({ index: 24})
+        } else {
+            this.setState ( { index: index - 1 } )
+        }
     }
 
 
     render () {
+        // console.log(this.state.data);
+        console.log('State:', this.state.index);
         const data = this.state.data[this.state.index];
         const sign = '<'
 
@@ -46,7 +60,7 @@ export default class Display extends Component {
 
             </div>
             <div>
-             <button onClick={this.decrementIndex}>{sign}Previous </button>
+            <button onClick={this.decrementIndex}>{sign}Previous </button>
             <button onClick={this.incrementIndex}>Next ></button>
 
             </div>
